@@ -28,7 +28,7 @@ export default function Comics() {
     }, [])
 
     return (
-        <div>
+        <div className=' gird-cols-4'>
             {comics?.length !== 0 &&
                 comics?.map(comic =>
                     <div key={`${id}11`}>
