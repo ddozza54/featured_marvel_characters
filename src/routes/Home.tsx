@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface IThumbnail {
     path: string;
@@ -21,15 +22,22 @@ export default function Home() {
     console.log(characters)
     useEffect(() => { getMovies() }, []);
 
+
     return (
         <>
+            <div>
+                <h1>Featured Characteres</h1>
+            </div>
             {characters.length == 0 ?
                 <span>Loading...</span> :
                 characters.map(character =>
-                    <div key={character.id}>
-                        <h4>{character.name}</h4>
-                        <img src={`${character?.thumbnail.path}.${character?.thumbnail.extension}`} width='200px' />
-                    </div>
+                    <Link key={character.id} to={`/character/${character.id}`} state={character}>
+                        <div >
+                            <img src={`${character?.thumbnail.path}.${character?.thumbnail.extension}`} width='200px' />
+                            <h4>{character.name}</h4>
+                        </div>
+                    </Link>
+
                 )
             }
         </>
