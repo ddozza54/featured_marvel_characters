@@ -6,7 +6,7 @@ export default function Header() {
         <>
             <div>
                 <Link to={`/`} >
-                    <img src='/public/favicon/marvel_full.png' />
+                    <img src='/favicon/marvel_full.png' />
                 </Link>
             </div>
         </>
