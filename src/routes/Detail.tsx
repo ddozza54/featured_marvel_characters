@@ -27,9 +27,9 @@ export default function Detail() {
         setDetails(json.data.results);
     }
     console.log(details)
-    // useEffect(() => {
-    //     getDetails();
-    // }, [])
+    useEffect(() => {
+        getDetails();
+    }, [])
 
     return (
         <div>
