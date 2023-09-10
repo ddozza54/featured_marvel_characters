@@ -21,21 +21,24 @@ export default function Home() {
     }
     useEffect(() => { getMovies() }, []);
 
+
     return (
         <div className='px-5 min-w-max'>
-            <div>
-                <h1 className='font-bold text-3xl my-20 text-white'>Featured Characteres</h1>
-            </div>
-            <div className=' grid grid-cols-3 gap-8 '>
+            <div className=' grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mx-auto mt-14'>
                 {characters.length == 0 ?
                     <span>Loading...</span> :
                     characters.map(character =>
-                        <div key={`${character.id}2`} className='min-w-max flex flex-col '>
+                        <div key={`${character.id}2`}
+                            className='flex flex-col items-center '>
                             <Link to={`/character/${character.id}`} state={character}>
-                                <img className='w-64 aspect-square rounded-full ring-8 ring-red-700  shadow-md 
-                                hover:ring-amber-400 hover:animate-intro' src={`${character?.thumbnail.path}.${character?.thumbnail.extension}`} width='200px' />
+                                <img
+                                    className='w-72 aspect-square rounded-full ring-[6px] ring-red-700  shadow-md 
+                                hover:ring-amber-400 
+                                hover:animate-intro
+                                active:animate-ping
+                                ' src={`${character?.thumbnail.path}.${character?.thumbnail.extension}`} width='200px' />
                             </Link >
-                            <h4 className='text-white my-6 text-center'>{character.name}</h4>
+                            <h4 className='text-zinc-300 my-6 text-center text-xl '>{character.name}</h4>
                         </div>
                     )
                 }

@@ -32,13 +32,18 @@ export default function Detail() {
     }, [])
 
     return (
-        <div>
-            {details.length !== 0 &&
+        <div className='w-full flex flex-col items-center mb-10 '>
+            {details.length === 0 ? <span>Loading...</span> :
                 details.map(detail =>
-                    <div key={id}>
-                        <img src={`${detail?.thumbnail.path}.${detail?.thumbnail.extension}`} width='300px' />
-                        <h2 >{detail.name}</h2>
-                        {detail.description ? <span>detail.description</span> : <span>No Description</span>}
+                    <div key={id} className='w-full flex bg-amber-500 '>
+                        <div className='w-1/2 pl-10'>
+                            <h2 className='text-6xl md:text-8xl lg:text-9xl  font-bold text-red-700 my-8'>{detail.name}</h2>
+                            <span className='text-2xl text-zinc-100'>{detail.description ? detail.description : "No Description"}</span>
+                        </div>
+                        <div className='w-1/2 '>
+                            <img src={`${detail?.thumbnail.path}.${detail?.thumbnail.extension}`}
+                                className='w-full min-w-[200px] max-w-4xl' />
+                        </div>
                     </div>)
             }
             <Comics />

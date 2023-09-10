@@ -8,12 +8,15 @@ export default {
     extend: {
       keyframes: {
         intro: {
-          from: { transform: "rotateY(0deg) scale(1.5)" },
-          to: { transform: "rotateY(360deg) scale(1.0)" },
+          from: { transform: "rotateY(0deg) scale(1.3)" },
+          to: {
+            transform: "rotateY(360deg) scale(1.0) ",
+            opacity: "0"
+          },
         },
       },
       animation: {
-        intro: "intro 1.2s ease-in-out",
+        intro: "intro 1.5s ease-in-out infinite",
       },
     },
   },

@@ -28,14 +28,25 @@ export default function Comics() {
     }, [])
 
     return (
-        <div className=' gird-cols-4'>
-            {comics?.length !== 0 &&
-                comics?.map(comic =>
-                    <div key={`${id}11`}>
-                        <img src={`${comic?.thumbnail.path}.${comic?.thumbnail.extension}`} width='300px' />
-                        <h2>{comic.title}</h2>
-                    </div>)
-            }
+        <div className='w-full flex flex-col items-center'>
+            <h2 className='text-white text-2xl my-10'>Comics</h2>
+            <div className='grid grid-flow-row gap-5 mx-auto max-w-[80%]
+            md:grid-cols-3
+            sm:grid-cols-2
+            lg:grid-cols-4
+            xl:grid-cols-5
+            '>
+                {comics?.length !== 0 &&
+                    comics?.map(comic =>
+                        <div key={`${id}11`}
+                            className='flex flex-col'>
+                            <img src={`${comic?.thumbnail.path}.${comic?.thumbnail.extension}`}
+                                className='hover:animate-bounce'
+                            />
+                            <h2 className='text-zinc-300 text-lg'>{comic.title}</h2>
+                        </div>)
+                }
+            </div>
         </div>
     );
 }
