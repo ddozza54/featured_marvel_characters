@@ -29,7 +29,7 @@ export default function Comics() {
 
     return (
         <div className='w-full flex flex-col items-center'>
-            <h2 className='text-white text-2xl my-10'>Comics</h2>
+            <h2 className='text-white text-2xl mt-16 my-10'>Comics</h2>
             <div className='grid grid-flow-row gap-5 mx-auto max-w-[80%]
             md:grid-cols-3
             sm:grid-cols-2

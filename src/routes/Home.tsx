@@ -9,6 +9,7 @@ interface ICharacter {
     id: number;
     name: string;
     thumbnail: IThumbnail;
+    modified: string;
 }
 
 export default function Home() {
@@ -20,7 +21,7 @@ export default function Home() {
         setCharacters(json.data.results);
     }
     useEffect(() => { getMovies() }, []);
-
+    console.log(characters)
 
     return (
         <div className='px-5 min-w-max'>
@@ -38,7 +39,8 @@ export default function Home() {
                                 active:animate-ping
                                 ' src={`${character?.thumbnail.path}.${character?.thumbnail.extension}`} width='200px' />
                             </Link >
-                            <h4 className='text-zinc-300 my-6 text-center text-xl '>{character.name}</h4>
+                            <h4 className='text-zinc-300 mt-6 text-center text-xl '>{character.name}</h4>
+                            <h4 className='text-zinc-400 mb-5 text-center text-sm '>{character.modified.slice(0, 4)}</h4>
                         </div>
                     )
                 }
