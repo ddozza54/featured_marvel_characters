@@ -25,7 +25,6 @@ export default function Comics() {
         console.log("comics", json.data)
         setComics(json.data.results);
     }
-    console.log(comics)
     useEffect(() => {
         getComics();
     }, [])
@@ -41,13 +40,13 @@ export default function Comics() {
             '>
                 {comics?.length !== 0 &&
                     comics?.map(comic =>
-                        <div key={`${id}11`}
+                        <div key={`${comic.id}`}
                             className='flex flex-col'>
                             <img src={`${comic?.thumbnail.path}.${comic?.thumbnail.extension}`}
                                 className='hover:animate-bounce'
                             />
                             <h2 className={`
-                             ${theme === 'dark' ? 'text-zinc-300' : 'text-zinc-500'}
+                             ${theme === 'dark' ? 'text-zinc-300' : 'text-zinc-700'}
                             text-lg`}>{comic.title}</h2>
                         </div>)
                 }

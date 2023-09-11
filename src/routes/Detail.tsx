@@ -37,7 +37,7 @@ export default function Detail() {
         <div className='w-full flex flex-col items-center mb-10 '>
             {details.length === 0 ? <span>Loading...</span> :
                 details.map(detail =>
-                    <div key={id} className='w-full flex bg-amber-500 '>
+                    <div key={detail.id} className='w-full flex bg-amber-500 '>
                         <div className='w-1/2 pl-10'>
                             <h2 className='text-6xl md:text-8xl lg:text-9xl  font-bold text-red-700 my-8'>{detail.name}</h2>
                             <span className={`text-2xl  ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-700'}`}>{detail.description ? detail.description : "No Description"}</span>
