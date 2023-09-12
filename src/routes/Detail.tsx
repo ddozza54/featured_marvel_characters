@@ -38,9 +38,9 @@ export default function Detail() {
             {details.length === 0 ? <span>Loading...</span> :
                 details.map(detail =>
                     <div key={detail.id} className='w-full flex bg-amber-500 '>
-                        <div className='w-1/2 pl-10'>
-                            <h2 className='text-6xl md:text-8xl lg:text-9xl  font-bold text-red-700 my-8'>{detail.name}</h2>
-                            <span className={`text-2xl  ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-700'}`}>{detail.description ? detail.description : "No Description"}</span>
+                        <div className='w-1/2 pl-10 z-[5]' >
+                            <h2 className='text-6xl md:text-8xl lg:text-9xl  font-bold text-red-700 mt-5'>{detail.name}</h2>
+                            <span className={`text-lg  ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-700'}`}>{detail.description ? detail.description : "No Description"}</span>
                         </div>
                         <div className='w-1/2 '>
                             <img src={`${detail?.thumbnail.path}.${detail?.thumbnail.extension}`}
