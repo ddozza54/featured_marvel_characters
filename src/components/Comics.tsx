@@ -22,7 +22,6 @@ export default function Comics() {
     const getComics = async () => {
         const json = await (
             await fetch(`${proxy}`)).json();
-        console.log("comics", json.data)
         setComics(json.data.results);
     }
     useEffect(() => {

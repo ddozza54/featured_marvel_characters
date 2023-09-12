@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext, ThemeContextType } from '../App.tsx'
+import SearchBar from '../components/SearchBar.tsx';
 
 interface IThumbnail {
     path: string;
@@ -15,22 +16,38 @@ interface ICharacter {
 
 export default function Home() {
     const [characters, setCharacters] = useState<ICharacter[]>([]);
+    const [searchText, setSearchText] = useState('');
     const theme = useContext<ThemeContextType>(ThemeContext);
+    const noImage = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
     const getMovies = async () => {
         const json = await (
             await fetch(`https://marvel-proxy.nomadcoders.workers.dev/v1/public/characters?limit=100&orderBy=modified&series=24229,1058,2023`)
         ).json();
-        setCharacters(json.data.results);
+        setCharacters(json.data.results.filter(v => v.thumbnail.path !== noImage));
     }
     useEffect(() => { getMovies() }, []);
-    console.log(characters)
 
     return (
         <div className='px-10 min-w-max'>
+            <form onSubmit={(e) => e.preventDefault()}>
+                <input
+                    onChange={(e) => {
+                        const text = e.target.value.toLocaleLowerCase();
+                        text.trim() !== "" && setSearchText(text);
+                    }}
+                    type='text' placeholder='Whom do you looking for' />
+            </form>
             <div className=' grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mx-auto mt-14'>
                 {characters.length == 0 ?
                     <span>Loading...</span> :
-                    characters.map(character =>
+                    characters.filter(c => {
+                        if (searchText === "") {
+                            return c;
+                        }
+                        if (searchText) {
+                            return c.name.toLowerCase().includes(searchText);
+                        }
+                    }).map(character =>
                         <div key={`${character.id}2`}
                             className='flex flex-col items-center '>
                             <Link to={`/character/${character.id}`} state={character}>
@@ -42,8 +59,7 @@ export default function Home() {
                                 ' src={`${character?.thumbnail.path}.${character?.thumbnail.extension}`} width='200px' />
                             </Link >
                             <h4
-                                className={`
-              ${theme === "dark" ? "text-zinc-300" : "text-zinc-800"}
+                                className={` ${theme === "dark" ? "text-zinc-300" : "text-zinc-800"}
                mt-6 text-center text-xl`}
                             >{character.name}</h4>
                             <h4
