@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext, ThemeContextType } from '../App.tsx'
-import SearchBar from '../components/SearchBar.tsx';
-
 interface IThumbnail {
     path: string;
     extension: string;
@@ -23,7 +21,7 @@ export default function Home() {
         const json = await (
             await fetch(`https://marvel-proxy.nomadcoders.workers.dev/v1/public/characters?limit=100&orderBy=modified&series=24229,1058,2023`)
         ).json();
-        setCharacters(json.data.results.filter(v => v.thumbnail.path !== noImage));
+        setCharacters(json.data.results.filter((v: ICharacter) => v.thumbnail.path !== noImage));
     }
     useEffect(() => { getMovies() }, []);
 
@@ -35,7 +33,8 @@ export default function Home() {
                         const text = e.target.value.toLocaleLowerCase();
                         text.trim() !== "" && setSearchText(text);
                     }}
-                    type='text' placeholder='Whom do you looking for' />
+                    type='text' placeholder='Whom do you looking for'
+                    className='p-2 valid:border-2 border-red-500 outline-none absolute top-10 z-10' />
             </form>
             <div className=' grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mx-auto mt-14'>
                 {characters.length == 0 ?
