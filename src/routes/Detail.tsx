@@ -29,7 +29,6 @@ export default function Detail() {
             await fetch(`${proxy}`)).json();
         setDetails(json.data.results.filter((v: IDetail) => v.thumbnail.path !== noImage));
     }
-    console.log(details)
     useEffect(() => {
         getDetails();
     }, [])
