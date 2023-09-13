@@ -34,7 +34,7 @@ export default function Home() {
                         text.trim() !== "" && setSearchText(text);
                     }}
                     type='text' placeholder='Whom do you looking for'
-                    className='p-2 valid:border-2 border-red-500 outline-none absolute top-10 z-10' />
+                    className='p-2 border-2 border-red-500 outline-none fixed top-10 z-10' />
             </form>
             <div className=' grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mx-auto mt-14'>
                 {characters.length == 0 ?
