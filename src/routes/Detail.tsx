@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ThemeContext, ThemeContextType } from '../App.tsx'
 import Comics from '../components/Comics';
