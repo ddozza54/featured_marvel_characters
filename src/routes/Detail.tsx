@@ -23,10 +23,11 @@ export default function Detail() {
     const [details, setDetails] = useState<IDetail[]>([]);
     const theme = useContext<ThemeContextType>(ThemeContext);
     const proxy = `https://marvel-proxy.nomadcoders.workers.dev/v1/public/characters/${id}`;
+    const noImage = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
     const getDetails = async () => {
         const json = await (
             await fetch(`${proxy}`)).json();
-        setDetails(json.data.results);
+        setDetails(json.data.results.filter((v: IDetail) => v.thumbnail.path !== noImage));
     }
     console.log(details)
     useEffect(() => {

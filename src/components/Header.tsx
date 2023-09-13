@@ -7,7 +7,7 @@ export default function Header() {
     return (
         <div
             className={`${theme === 'dark' ? 'bg-black' : 'bg-amber-400'} 
-                w-full p-5  mb-4 flex justify-center sticky top-0 z-10
+                w-full p-5 flex justify-center sticky top-0 z-10
         `}>
             <div className='flex items-center space-x-4'>
                 <h2 className={`${theme === 'dark' ? 'text-white' : 'text-zinc-800'} text-2xl`}>Featured</h2>
