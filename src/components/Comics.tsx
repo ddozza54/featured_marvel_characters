@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ThemeContext, ThemeContextType } from '../App.tsx'
+import { BASE_URL } from '../routes/Constants.ts';
 
 
 interface Ithumnail {
@@ -17,7 +18,7 @@ interface IComics {
 export default function Comics() {
     const [comics, setComics] = useState<IComics[]>();
     const { id } = useParams();
-    const proxy = `https://marvel-proxy.nomadcoders.workers.dev/v1/public/characters/${id}/comics`;
+    const proxy = `${BASE_URL}v1/public/characters/${id}/comics`;
     const theme = useContext<ThemeContextType>(ThemeContext);
     const getComics = async () => {
         const json = await (

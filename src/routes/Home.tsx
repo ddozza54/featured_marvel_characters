@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext, ThemeContextType } from '../App.tsx'
+import { BASE_URL, NO_IMAGE_URL } from './Constants.ts';
 interface IThumbnail {
     path: string;
     extension: string;
@@ -16,12 +17,12 @@ export default function Home() {
     const [characters, setCharacters] = useState<ICharacter[]>([]);
     const [searchText, setSearchText] = useState('');
     const theme = useContext<ThemeContextType>(ThemeContext);
-    const noImage = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
+
     const getCharacters = async () => {
         const json = await (
-            await fetch(`https://marvel-proxy.nomadcoders.workers.dev/v1/public/characters?limit=100&orderBy=modified&series=24229,1058,2023`)
+            await fetch(`${BASE_URL}v1/public/characters?limit=100&orderBy=modified&series=24229,1058,2023`)
         ).json();
-        setCharacters(json.data.results.filter((v: ICharacter) => v.thumbnail.path !== noImage));
+        setCharacters(json.data.results.filter((v: ICharacter) => v.thumbnail.path !== NO_IMAGE_URL));
     }
     useEffect(() => { getCharacters() }, []);
 

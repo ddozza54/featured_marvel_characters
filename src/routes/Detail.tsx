@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ThemeContext, ThemeContextType } from '../App.tsx'
 import Comics from '../components/Comics';
+import { BASE_URL, NO_IMAGE_URL } from './Constants.ts';
 
 
 interface Ithumnail {
@@ -22,12 +23,11 @@ export default function Detail() {
     const { id } = useParams();
     const [details, setDetails] = useState<IDetail[]>([]);
     const theme = useContext<ThemeContextType>(ThemeContext);
-    const proxy = `https://marvel-proxy.nomadcoders.workers.dev/v1/public/characters/${id}`;
-    const noImage = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
+    const proxy = `${BASE_URL}v1/public/characters/${id}`;
     const getDetails = async () => {
         const json = await (
             await fetch(`${proxy}`)).json();
-        setDetails(json.data.results.filter((v: IDetail) => v.thumbnail.path !== noImage));
+        setDetails(json.data.results.filter((v: IDetail) => v.thumbnail.path !== NO_IMAGE_URL));
     }
     useEffect(() => {
         getDetails();
