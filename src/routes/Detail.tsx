@@ -3,31 +3,17 @@ import { useParams } from 'react-router-dom';
 import { ThemeContext, ThemeContextType } from '../App.tsx'
 import Comics from '../components/Comics';
 import { BASE_URL, NO_IMAGE_URL } from './Constants.ts';
-
-
-interface Ithumnail {
-    path: string;
-    extension: string;
-}
-
-interface IDetail {
-    key: string;
-    id: string;
-    modified: string;
-    name: string;
-    thumbnail: Ithumnail;
-    description: string;
-}
+import { Details } from '../types/types.ts';
 
 export default function Detail() {
     const { id } = useParams();
-    const [details, setDetails] = useState<IDetail[]>([]);
+    const [details, setDetails] = useState<Details[]>([]);
     const theme = useContext<ThemeContextType>(ThemeContext);
     const proxy = `${BASE_URL}v1/public/characters/${id}`;
     const getDetails = async () => {
         const json = await (
             await fetch(`${proxy}`)).json();
-        setDetails(json.data.results.filter((v: IDetail) => v.thumbnail.path !== NO_IMAGE_URL));
+        setDetails(json.data.results.filter((v: Details) => v.thumbnail.path !== NO_IMAGE_URL));
     }
     useEffect(() => {
         getDetails();

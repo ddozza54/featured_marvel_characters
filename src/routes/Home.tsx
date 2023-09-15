@@ -2,19 +2,12 @@ import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext, ThemeContextType } from '../App.tsx'
 import { BASE_URL, NO_IMAGE_URL } from './Constants.ts';
-interface IThumbnail {
-    path: string;
-    extension: string;
-}
-interface ICharacter {
-    id: number;
-    name: string;
-    thumbnail: IThumbnail;
-    modified: string;
-}
+import { Character } from '../types/types.ts';
+
+
 
 export default function Home() {
-    const [characters, setCharacters] = useState<ICharacter[]>([]);
+    const [characters, setCharacters] = useState<Character[]>([]);
     const [searchText, setSearchText] = useState('');
     const theme = useContext<ThemeContextType>(ThemeContext);
 
@@ -22,7 +15,7 @@ export default function Home() {
         const json = await (
             await fetch(`${BASE_URL}v1/public/characters?limit=100&orderBy=modified&series=24229,1058,2023`)
         ).json();
-        setCharacters(json.data.results.filter((v: ICharacter) => v.thumbnail.path !== NO_IMAGE_URL));
+        setCharacters(json.data.results.filter((v: Character) => v.thumbnail.path !== NO_IMAGE_URL));
     }
     useEffect(() => { getCharacters() }, []);
 

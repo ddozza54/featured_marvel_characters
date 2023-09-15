@@ -2,21 +2,10 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ThemeContext, ThemeContextType } from '../App.tsx'
 import { BASE_URL } from '../routes/Constants.ts';
-
-
-interface Ithumnail {
-    path: string;
-    extension: string;
-}
-
-interface IComics {
-    id: number;
-    title: string;
-    thumbnail: Ithumnail;
-}
+import { Comic } from '../types/types.ts';
 
 export default function Comics() {
-    const [comics, setComics] = useState<IComics[]>();
+    const [comics, setComics] = useState<Comic[]>();
     const { id } = useParams();
     const proxy = `${BASE_URL}v1/public/characters/${id}/comics`;
     const theme = useContext<ThemeContextType>(ThemeContext);
