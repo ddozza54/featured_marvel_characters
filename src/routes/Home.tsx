@@ -29,14 +29,9 @@ export default function Home() {
             <div className=' grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 mx-auto mt-14'>
                 {characters.length == 0 ?
                     <span>Loading...</span> :
-                    characters.filter(c => {
-                        if (searchText === "") {
-                            return c;
-                        }
-                        if (searchText) {
-                            return c.name.toLowerCase().includes(searchText);
-                        }
-                    }).map((character, index) =>
+                    characters.filter(c => 
+                        searchText? c.name.toLowerCase().includes(searchText) : c
+                    ).map((character, index) =>
                         <Profile
                             character={character}
                             key={index}
