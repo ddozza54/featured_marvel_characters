@@ -23,7 +23,7 @@ export default function Home() {
                         const text = e.target.value.toLowerCase();
                         setSearchText(text);
                     }}
-                    type='text' placeholder='Whom do you looking for'
+                    type='text' placeholder='Filtered Character'
                     className='p-2 border-2 border-red-500 outline-none fixed top-10 z-10' />
             </form>
             <div className=' grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 mx-auto mt-14'>
